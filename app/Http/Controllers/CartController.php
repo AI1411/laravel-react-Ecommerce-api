@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AddCartRequest;
 use App\Http\Resources\CartResource;
+use App\Http\Resources\UserResource;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
 class CartController extends Controller
@@ -28,9 +31,15 @@ class CartController extends Controller
         return response(new CartResource($cart), Response::HTTP_CREATED);
     }
 
-    public function checkout()
+    public function checkout(Request $request)
     {
-        dd("test");
+        $user = User::find(1);
+        $total = Cart::get_total_price($user->id);
+
+        $user->money = $user->money - $request->total_price;
+        $user->save();
+
+        return response(new UserResource($user), Response::HTTP_CREATED);
     }
 
     public function destroy(Cart $cart)

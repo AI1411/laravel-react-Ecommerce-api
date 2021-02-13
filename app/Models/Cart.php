@@ -18,14 +18,15 @@ class Cart extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getTotalPriceAttribute()
+    public static function get_total_price(int $user_id)
     {
-        $total = Cart::all();
-        $price = 0;
-        foreach ($total as $item) {
-            $price += $item->product->price;
+        $carts = self::query()->where('user_id', $user_id)->get();
+
+        $total_price = 0;
+        foreach ($carts as $cart) {
+            $total_price += $cart->product->price;
         }
 
-        return $price;
+        return $total_price;
     }
 }
