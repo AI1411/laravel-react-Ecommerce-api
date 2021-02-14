@@ -16,7 +16,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::searchProductName()
+            ->searchPrice()
+            ->paginate();
 
         return response(ProductResource::collection($products), Response::HTTP_OK);
     }

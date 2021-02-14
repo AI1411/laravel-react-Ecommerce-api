@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Request;
 
 class Product extends Model
 {
@@ -26,5 +27,25 @@ class Product extends Model
     public function getPriceIncludeTaxAttribute()
     {
         return $this->price + $this->tax;
+    }
+
+    public function scopeSearchProductName($query)
+    {
+        $searchInput = Request::input('product_name');
+
+        if ($searchInput) {
+            $query->where('product_name', 'like', "%${searchInput}%");
+        }
+        return $query;
+    }
+
+    public function scopeSearchPrice($query)
+    {
+        $searchInput = Request::input('price');
+
+        if ($searchInput) {
+            $query->where('price', '<', $searchInput);
+        }
+        return $query;
     }
 }
