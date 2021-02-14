@@ -34,10 +34,15 @@ class CartController extends Controller
     public function checkout(Request $request)
     {
         $user = User::find(1);
-        $total = Cart::get_total_price($user->id);
 
-        $user->money = $user->money - $request->total_price;
+        $user->money -= $request->total_price;
         $user->save();
+
+        $cart_items = Cart::query()->where('user_id', $user->id)->get();
+
+        foreach ($cart_items as $cart_item) {
+            $cart_item->delete();
+        }
 
         return response(new UserResource($user), Response::HTTP_CREATED);
     }

@@ -17,16 +17,4 @@ class Cart extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public static function get_total_price(int $user_id)
-    {
-        $carts = self::query()->where('user_id', $user_id)->get();
-
-        $total_price = 0;
-        foreach ($carts as $cart) {
-            $total_price += $cart->product->price;
-        }
-
-        return $total_price;
-    }
 }
