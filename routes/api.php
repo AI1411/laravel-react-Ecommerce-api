@@ -31,4 +31,7 @@ Route::post('/checkout', 'CartController@checkout');
 //購入履歴
 Route::get('histories', 'PurchaseHistoryController@index');
 
+//お気に入り
+Route::apiResource('favorites', 'FavoriteController')->except(['show', 'update']);
+
 

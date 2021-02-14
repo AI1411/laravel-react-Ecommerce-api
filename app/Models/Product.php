@@ -19,6 +19,11 @@ class Product extends Model
         return $this->hasMany(PurchaseHistory::class);
     }
 
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+
     public function getTaxAttribute()
     {
         return floor($this->price * config('const.tax'));
