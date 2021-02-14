@@ -23,7 +23,7 @@ class ProductResource extends JsonResource
             'description' => $this->description,
             'category_id' => $this->category_id,
             'tag_id' => $this->tag_id,
-            'created_at' => $this->created_at->format('Y年j月n日'),
+            'created_at' => $this->created_at->format('Y年n月j日'),
         ];
     }
 }

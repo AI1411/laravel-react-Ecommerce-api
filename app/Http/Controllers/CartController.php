@@ -7,6 +7,7 @@ use App\Http\Resources\CartResource;
 use App\Http\Resources\UserResource;
 use App\Models\Cart;
 use App\Models\Product;
+use App\Models\PurchaseHistory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -41,6 +42,11 @@ class CartController extends Controller
         $cart_items = Cart::query()->where('user_id', $user->id)->get();
 
         foreach ($cart_items as $cart_item) {
+            //購入履歴に登録
+            PurchaseHistory::query()->create([
+                'user_id' => $cart_item->user_id,
+                'product_id' => $cart_item->product_id,
+            ]);
             $cart_item->delete();
         }
 

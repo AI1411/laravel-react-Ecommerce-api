@@ -25,4 +25,10 @@ Route::apiResource('carts', 'CartController')->only('index', 'destroy');
 Route::post('carts/{product}', 'CartController@store');
 Route::get('main_categories', 'MainCategoryController@index');
 
+//購入処理
 Route::post('/checkout', 'CartController@checkout');
+
+//購入履歴
+Route::get('histories', 'PurchaseHistoryController@index');
+
+

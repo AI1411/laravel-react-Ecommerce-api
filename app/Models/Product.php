@@ -13,6 +13,11 @@ class Product extends Model
         return $this->hasMany(Cart::class);
     }
 
+    public function pruchase_histories()
+    {
+        return $this->hasMany(PurchaseHistory::class);
+    }
+
     public function getTaxAttribute()
     {
         return floor($this->price * config('const.tax'));
