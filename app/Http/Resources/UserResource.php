@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /** @mixin \App\Models\User */
@@ -15,14 +16,17 @@ class UserResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->email,
+            'first_name' => $this->first_name,
+            'last_name' => $this->last_name,
+            'gender' => $this->gender,
+            'address' => $this->address,
+            'tel' => $this->tel,
+            'birthday' => $this->birthday,
+            'status' => $this->status,
             'money' => $this->money,
-            'email_verified_at' => $this->email_verified_at,
-            'password' => $this->password,
-            'remember_token' => $this->remember_token,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'image' => url('images/users/' . $this->image),
+            'email' => $this->email,
+            'created_at' => Carbon::parse($this->created_at)->format('Y年n月j日'),
 
             'carts' => CartResource::collection($this->whenLoaded('carts')),
         ];

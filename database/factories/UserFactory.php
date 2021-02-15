@@ -19,7 +19,25 @@ use Illuminate\Support\Str;
 
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
+        'gender' => $faker->randomElement(['male', 'female']),
+        'address' => $faker->address,
+        'tel' => $faker->randomElement(['090', '080', '070']) . $faker->numberBetween(11111111, 99999999),
+        'image' => $faker->randomElement([
+            'ahmet-hamdi-N_B7H4Fr-AI-unsplash.jpg',
+            'alireza-zarafshani-yN1Ok6kv900-unsplash.jpg',
+            'altin-ferreira-FS3cfZ78ohk-unsplash.jpg',
+            'aw1ye-f32p6.png',
+            'clem-onojeghuo-Mm8J-IizOmc-unsplash.jpg',
+            'jasmin-chew-xHQkBKrYcz4-unsplash.jpg',
+            'joel-mott-Z8MesVFSYac-unsplash.jpg',
+            'kevin-laminto-DeWYiaomccI-unsplash.jpg',
+            'khashayar-kouchpeydeh-DT4xZO3pTLo-unsplash.jpg',
+            'leonie-zettl-D72tx-xAxvY-unsplash.jpg',
+        ]),
+        'birthday' => $faker->dateTime,
+        'status' => $faker->numberBetween(1, 4),
         'email' => $faker->unique()->safeEmail,
         'money' => $faker->numberBetween(10000, 50000),
         'email_verified_at' => now(),
