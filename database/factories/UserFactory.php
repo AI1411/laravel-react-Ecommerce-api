@@ -37,7 +37,7 @@ $factory->define(User::class, function (Faker $faker) {
             'leonie-zettl-D72tx-xAxvY-unsplash.jpg',
         ]),
         'birthday' => $faker->dateTime,
-        'status' => $faker->numberBetween(1, 4),
+        'status' => $faker->numberBetween(1, 2),
         'email' => $faker->unique()->safeEmail,
         'money' => $faker->numberBetween(10000, 50000),
         'email_verified_at' => now(),

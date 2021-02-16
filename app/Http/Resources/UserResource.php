@@ -22,7 +22,10 @@ class UserResource extends JsonResource
             'address' => $this->address,
             'tel' => $this->tel,
             'birthday' => $this->birthday,
-            'status' => $this->status,
+            'status' => [
+                'text' => $this->status === 1 ? 'active' : 'not active',
+                'class' => $this->status === 1 ? 'green' : 'red',
+            ],
             'money' => $this->money,
             'image' => url('images/users/' . $this->image),
             'email' => $this->email,
