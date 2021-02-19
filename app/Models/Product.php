@@ -24,6 +24,11 @@ class Product extends Model
         return $this->hasMany(Favorite::class);
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function getTaxAttribute()
     {
         return floor($this->price * config('const.tax'));

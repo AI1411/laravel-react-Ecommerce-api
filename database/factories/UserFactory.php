@@ -24,7 +24,7 @@ $factory->define(User::class, function (Faker $faker) {
         'gender' => $faker->randomElement(['male', 'female']),
         'address' => $faker->address,
         'tel' => $faker->randomElement(['090', '080', '070']) . $faker->numberBetween(11111111, 99999999),
-        'image' => $faker->randomElement([
+        'image' => 'images/users/' . $faker->randomElement([
             'ahmet-hamdi-N_B7H4Fr-AI-unsplash.jpg',
             'alireza-zarafshani-yN1Ok6kv900-unsplash.jpg',
             'altin-ferreira-FS3cfZ78ohk-unsplash.jpg',

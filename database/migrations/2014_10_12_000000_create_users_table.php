@@ -19,11 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->string('gender');
             $table->string('address');
-            $table->string('tel');
-            $table->string('birthday');
-            $table->string('image');
+            $table->string('tel')->nullable();
+            $table->string('birthday')->nullable();
+            $table->string('image')->nullable()->default('images/users/no-image.png');
             $table->unsignedBigInteger('status');
-            $table->unsignedBigInteger('money');
+            $table->unsignedBigInteger('money')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -22,6 +22,7 @@ class ProductResource extends JsonResource
             'price_include_tax' => $this->price_include_tax,
             'description' => $this->description,
             'category_id' => $this->category_id,
+            'category' => $this->category->name,
             'tag_id' => $this->tag_id,
             'created_at' => $this->created_at->format('Y年n月j日'),
         ];
