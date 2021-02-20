@@ -25,7 +25,7 @@ Route::apiResource('products', 'ProductController');
 Route::apiResource('categories', 'CategoryController');
 Route::apiResource('carts', 'CartController')->only('index', 'destroy');
 Route::post('carts/{product}', 'CartController@store');
-Route::get('main_categories', 'MainCategoryController@index');
+Route::apiResource('main_categories', 'MainCategoryController');
 
 //購入処理
 Route::post('/checkout', 'CartController@checkout');
