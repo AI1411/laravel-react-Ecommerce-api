@@ -25,12 +25,19 @@ class CategoryController extends Controller
 
     public function store(CreateCategoryRequest $request)
     {
-        $category = Category::create([
+        $category = Category::create($request->validated());
+
+        return response(new CategoryResource($category), Response::HTTP_CREATED);
+    }
+
+    public function update(Request $request, Category $category)
+    {
+        $category->update([
             'name' => $name = $request->name,
             'slug' => Str::slug($name),
             'main_category_id' => $request->main_category_id,
         ]);
 
-        return response(new CategoryResource($category), Response::HTTP_CREATED);
+        return response(new CategoryResource($category), Response::HTTP_ACCEPTED);
     }
 }
