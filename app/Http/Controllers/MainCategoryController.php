@@ -18,6 +18,11 @@ class MainCategoryController extends Controller
         return response(MainCategoryResource::collection($main_categories), Response::HTTP_OK);
     }
 
+    public function show(MainCategory $mainCategory)
+    {
+        return response(new MainCategoryResource($mainCategory), Response::HTTP_OK);
+    }
+
     public function store(CreateMainCategoryRequest $request)
     {
         $main_category = MainCategory::create([
@@ -26,5 +31,15 @@ class MainCategoryController extends Controller
         ]);
 
         return response(new MainCategoryResource($main_category), Response::HTTP_CREATED);
+    }
+
+    public function update(CreateMainCategoryRequest $request, MainCategory $mainCategory)
+    {
+        $mainCategory->update([
+            'name' => $name = $request->name,
+            'slug' => Str::slug($name),
+        ]);
+
+        return \response(new MainCategoryResource($mainCategory), Response::HTTP_ACCEPTED);
     }
 }
