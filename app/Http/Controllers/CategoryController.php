@@ -40,4 +40,13 @@ class CategoryController extends Controller
 
         return response(new CategoryResource($category), Response::HTTP_ACCEPTED);
     }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+
+        $category->products()->delete();
+
+        return response(null, Response::HTTP_NO_CONTENT);
+    }
 }

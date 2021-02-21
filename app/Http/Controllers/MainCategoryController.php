@@ -47,6 +47,8 @@ class MainCategoryController extends Controller
     {
         $mainCategory->delete();
 
+        $mainCategory->categories()->delete();
+
         return response(null, Response::HTTP_NO_CONTENT);
     }
 }
