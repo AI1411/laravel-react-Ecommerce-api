@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
 class ProductController extends Controller
@@ -31,7 +32,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $product = Product::create([
+            'product_name' => $name = $request->product_name,
+            'slug' => Str::slug($name),
+            'price' => $request->price,
+            'description' => $request->description,
+            'category_id' => $request->category_id,
+        ]);
+
+        return response(new ProductResource($product), Response::HTTP_CREATED);
     }
 
     /**
@@ -54,7 +63,15 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->update([
+            'product_name' => $name = $request->product_name,
+            'slug' => Str::slug($name),
+            'price' => $request->price,
+            'description' => $request->description,
+            'category_id' => $request->category_id,
+        ]);
+
+        return response(new ProductResource($product), Response::HTTP_ACCEPTED);
     }
 
     /**

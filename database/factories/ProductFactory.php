@@ -10,7 +10,7 @@ $factory->define(Product::class, function (Faker $faker) {
     return [
         'product_name' => $name = $faker->text(10),
         'slug' => \Illuminate\Support\Str::slug($name),
-        'image' => $faker->randomElement([
+        'image' => 'images/products/' . $faker->randomElement([
             'adam-birkett-QRWAdBCqysc-unsplash.jpg',
             'alexander-rotker-l8p1aWZqHvE-unsplash.jpg',
             'c-d-x-PDX_a_82obo-unsplash.jpg',

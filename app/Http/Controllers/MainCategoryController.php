@@ -42,4 +42,11 @@ class MainCategoryController extends Controller
 
         return \response(new MainCategoryResource($mainCategory), Response::HTTP_ACCEPTED);
     }
+
+    public function destroy(MainCategory $mainCategory)
+    {
+        $mainCategory->delete();
+
+        return response(null, Response::HTTP_NO_CONTENT);
+    }
 }

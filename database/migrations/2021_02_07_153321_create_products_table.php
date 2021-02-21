@@ -17,11 +17,11 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('product_name');
             $table->string('slug');
-            $table->string('image')->nullable();
+            $table->string('image')->nullable()->default('images/products/no-product-image.png');
             $table->unsignedBigInteger('price');
             $table->text('description')->nullable();
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('tag_id');
+            $table->unsignedBigInteger('tag_id')->nullable();
             $table->timestamps();
         });
     }

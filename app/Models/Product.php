@@ -9,6 +9,11 @@ class Product extends Model
 {
     protected $guarded = [];
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function carts()
     {
         return $this->hasMany(Cart::class);
