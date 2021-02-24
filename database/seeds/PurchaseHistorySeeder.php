@@ -11,6 +11,6 @@ class PurchaseHistorySeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Models\PurchaseHistory::class, 30)->create();
+        factory(\App\Models\PurchaseHistory::class, 300)->create();
     }
 }

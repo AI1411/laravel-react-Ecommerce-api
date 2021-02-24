@@ -17,6 +17,7 @@ class CreatePurchaseHistoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('user_id');
             $table->string('product_id');
+            $table->timestamp('purchase_date');
             $table->timestamps();
         });
     }

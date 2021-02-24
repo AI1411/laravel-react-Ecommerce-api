@@ -9,5 +9,6 @@ $factory->define(PurchaseHistory::class, function (Faker $faker) {
     return [
         'user_id' => $faker->numberBetween(1, count(\App\Models\User::all())),
         'product_id' => $faker->numberBetween(1, count(\App\Models\Product::all())),
+        'purchase_date' => $faker->dateTimeBetween('-30days'),
     ];
 });
