@@ -38,4 +38,6 @@ Route::get('rankings/{slug}', 'PurchaseHistoryController@category_ranking');
 //お気に入り
 Route::apiResource('favorites', 'FavoriteController')->except(['show', 'update']);
 
+//ダッシュボード
+Route::get('admin/dashboard', 'DashboardController@index');
 
