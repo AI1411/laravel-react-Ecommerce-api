@@ -28,7 +28,7 @@ class PurchaseHistoryController extends Controller
         $rankings = DB::table('purchase_histories')
             ->join('products', 'purchase_histories.product_id', 'products.id')
             ->join('categories', 'products.category_id', 'categories.id')
-            ->select(DB::raw('count(*) as product_count, product_id'), 'products.*', 'categories.slug as category_slug')
+            ->select(DB::raw('count(*) as product_count, product_id'), 'products.*', 'categories.slug as category_slug', 'categories.name as category_name')
             ->groupBy('product_id')
             ->get()
             ->sortByDesc('product_count');
@@ -41,7 +41,7 @@ class PurchaseHistoryController extends Controller
         $rankings = DB::table('purchase_histories')
             ->join('products', 'purchase_histories.product_id', 'products.id')
             ->join('categories', 'products.category_id', 'categories.id')
-            ->select(DB::raw('count(*) as product_count, product_id'), 'products.*', 'categories.slug as category_slug')
+            ->select(DB::raw('count(*) as product_count, product_id'), 'products.*', 'categories.slug as category_slug', 'categories.name as category_name')
             ->where('categories.slug', $slug)
             ->groupBy('product_id')
             ->get()

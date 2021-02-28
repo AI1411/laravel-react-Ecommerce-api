@@ -21,6 +21,7 @@ class RankingResource extends JsonResource
             'price' => $this->price,
             'slug' => $this->slug,
             'category_slug' => $this->category_slug,
+            'category_name' => $this->category_name,
         ];
     }
 }
