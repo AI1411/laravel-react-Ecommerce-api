@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
+use App\Models\User;
+use App\Models\UserAccessLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,6 +54,11 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
+        UserAccessLog::register_log([
+            'user_id' => User::find(1)->id,
+            'product_id' => $product->id,
+        ]);
+
         return response(new ProductResource($product), Response::HTTP_OK);
     }
 

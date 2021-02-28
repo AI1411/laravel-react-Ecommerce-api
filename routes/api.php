@@ -32,8 +32,7 @@ Route::post('/checkout', 'CartController@checkout');
 
 //購入履歴
 Route::get('histories', 'PurchaseHistoryController@index');
-Route::get('rankings', 'PurchaseHistoryController@ranking');
-Route::get('rankings/{slug}', 'PurchaseHistoryController@category_ranking');
+Route::get('rankings/{slug}', 'RankingController@category_ranking');
 
 //お気に入り
 Route::apiResource('favorites', 'FavoriteController')->except(['show', 'update']);
