@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\ProductResource;
+use App\Models\AdminLog;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\UserAccessLog;
@@ -35,6 +36,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        AdminLog::registerLog(1, 'create', 'product');
+
         $product = Product::create([
             'product_name' => $name = $request->product_name,
             'slug' => Str::slug($name),
@@ -71,6 +74,8 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        AdminLog::registerLog(1, 'update', 'product');
+
         $product->update([
             'product_name' => $name = $request->product_name,
             'slug' => Str::slug($name),
@@ -90,6 +95,8 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
+        AdminLog::registerLog(1, 'delete', 'product');
+
         $product->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
