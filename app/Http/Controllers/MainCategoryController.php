@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateMainCategoryRequest;
 use App\Http\Resources\MainCategoryResource;
+use App\Models\AdminLog;
 use App\Models\MainCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -25,6 +26,8 @@ class MainCategoryController extends Controller
 
     public function store(CreateMainCategoryRequest $request)
     {
+        AdminLog::registerLog(1, 'create', 'main_category');
+
         $main_category = MainCategory::create([
             'name' => $name = $request->name,
             'slug' => Str::slug($name),
@@ -35,6 +38,8 @@ class MainCategoryController extends Controller
 
     public function update(CreateMainCategoryRequest $request, MainCategory $mainCategory)
     {
+        AdminLog::registerLog(1, 'update', 'main_category');
+
         $mainCategory->update([
             'name' => $name = $request->name,
             'slug' => Str::slug($name),
@@ -45,6 +50,8 @@ class MainCategoryController extends Controller
 
     public function destroy(MainCategory $mainCategory)
     {
+        AdminLog::registerLog(1, 'delete', 'main_category');
+
         $mainCategory->delete();
 
         $mainCategory->categories()->delete();
